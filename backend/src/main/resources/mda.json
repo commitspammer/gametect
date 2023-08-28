@@ -1,0 +1,48 @@
+{
+	"name": "MDA",
+	"tutorial": "It's really that simple.",
+	"sections": [
+		{
+			"title": "Mechanics",
+			"description": "About Mechanics.",
+			"subsections": [
+				{
+					"title": "Components",
+					"description": "About Components"
+				},
+				{
+					"title": "Controls",
+					"description": "About Controls"
+				}
+			]
+		},
+		{
+			"title": "Dynamics",
+			"description": "About Dynamics.",
+			"subsections": [
+				{
+					"title": "Context",
+					"description": "About Context"
+				},
+				{
+					"title": "Constraints",
+					"description": "About Constraints"
+				}
+			]
+		},
+		{
+			"title": "Aesthetics",
+			"description": "About Aesthetics.",
+			"subsections": [
+				{
+					"title": "Challenge",
+					"description": "About Challenge"
+				},
+				{
+					"title": "Commendation",
+					"description": "About Commendation"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,52 @@
+-- insert into user (avatar,email,name,password) values ("https://cataas.com/cat/says/A","a@a","Mr. A","a")
+-- insert into user (avatar,email,name,password) values ("https://cataas.com/cat/says/B","b@b","Mr. B","b")
+-- insert into user (avatar,email,name,password) values ("https://cataas.com/cat/says/C","c@c","Mr. C","c")
+-- 
+-- insert into framework (description,name) values ("An education-oriented but not education-only game design framework.","PlayEduc")
+-- insert into category (description,framework_id,name) values ("All about design",(select id from framework where name="PlayEduc"),"Design")
+-- insert into category (description,framework_id,name) values ("All about pedagogy",(select id from framework where name="PlayEduc"),"Pedagogy")
+-- insert into subcategory (description,name,category_id) values ("All about characters","Character",(select id from category where name="Design"))
+-- insert into subcategory (description,name,category_id) values ("All about narratives","Narrative",(select id from category where name="Design"))
+-- insert into subcategory (description,name,category_id) values ("All about expectations","Expectation",(select id from category where name="Pedagogy"))
+-- insert into subcategory (description,name,category_id) values ("All about revisiting","Revisit",(select id from category where name="Pedagogy"))
+-- 
+-- insert into framework (description,name) values ("The most popular game design framework.","MDA")
+-- insert into category (description,framework_id,name) values ("All about mechanics",(select id from framework where name="MDA"),"Mechanics")
+-- insert into category (description,framework_id,name) values ("All about dynamics",(select id from framework where name="MDA"),"Dynamics")
+-- insert into category (description,framework_id,name) values ("All about aesthetics",(select id from framework where name="MDA"),"Aesthetics")
+-- 
+-- insert into project (framework_id,archived,banner,description,title) values ((select id from framework where name="PlayEduc"),0,"https://cataas.com/cat","A 2D platform game about plumbers.","Super Mario Bros")
+-- insert into project (framework_id,archived,banner,description,title) values ((select id from framework where name="MDA"),1,"https://cataas.com/cat","An open-world crime life game.","Grand Theft Auto V")
+-- 
+-- insert into collab (project_id,user_id) values ((select id from project where title="Super Mario Bros"),(select id from user where email="a@a"))
+-- insert into collab (project_id,user_id) values ((select id from project where title="Super Mario Bros"),(select id from user where email="b@b"))
+-- insert into collab (project_id,user_id) values ((select id from project where title="Grand Theft Auto V"),(select id from user where email="a@a"))
+-- 
+-- insert into section (parent_id,title) values (null,"Design")
+-- insert into section (parent_id,title) values (null,"Pedagogy")
+-- insert into section (parent_id,title) values (null,"Psychology")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Design"),"Character")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Design"),"Narrative")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Design"),"Camera")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Pedagogy"),"Expectation")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Pedagogy"),"Revisit")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Pedagogy"),"Encouragement")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Psychology"),"Imersion")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Psychology"),"Evolution")
+-- insert into section (parent_id,title) values ((select s.id from section s where title="Psychology"),"Realization")
+-- insert into section (parent_id,title) values (null,"Mechanics")
+-- insert into section (parent_id,title) values (null,"Dynamics")
+-- insert into section (parent_id,title) values (null,"Aesthetics")
+-- 
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Super Mario Bros"),(select s.id from section s where title="Design"))
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Super Mario Bros"),(select s.id from section s where title="Pedagogy"))
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Super Mario Bros"),(select s.id from section s where title="Psychology"))
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Grand Theft Auto V"),(select s.id from section s where title="Mechanics"))
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Grand Theft Auto V"),(select s.id from section s where title="Dynamics"))
+-- insert into project_has_section (project_id,section_id) values ((select id from project where title="Grand Theft Auto V"),(select s.id from section s where title="Aesthetics"))
+
+-- -- TODO find a way to programmatically deep clone a section tree...
+-- --      the implementation below doesn't cut it, because it's a shallow clone!
+-- CREATE TABLE tmp AS (WITH RECURSIVE clone AS ( SELECT id, parent_id, CONCAT(title, '2') AS title FROM section WHERE parent_id IS NULL UNION ALL SELECT s.id, clone.id, CONCAT(s.title, '2') AS title FROM section s JOIN clone ON s.parent_id = clone.id ) SELECT * FROM clone)
+-- INSERT INTO section (parent_id,title) SELECT parent_id, title FROM tmp
+-- DROP TABLE tmp

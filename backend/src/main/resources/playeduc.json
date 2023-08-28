@@ -1,0 +1,48 @@
+{
+	"name": "PlayEduc",
+	"tutorial": "Just do it.",
+	"sections": [
+		{
+			"title": "Design",
+			"description": "About Design.",
+			"subsections": [
+				{
+					"title": "Character",
+					"description": "About Character"
+				},
+				{
+					"title": "Narrative",
+					"description": "About Narrative"
+				}
+			]
+		},
+		{
+			"title": "Pedagogy",
+			"description": "About Pedagogy.",
+			"subsections": [
+				{
+					"title": "Expectation",
+					"description": "About Expectation"
+				},
+				{
+					"title": "Revisiting",
+					"description": "About Revisiting"
+				}
+			]
+		},
+		{
+			"title": "Psycology",
+			"description": "About Psycology.",
+			"subsections": [
+				{
+					"title": "Imersion",
+					"description": "About Imersion"
+				},
+				{
+					"title": "Evolution",
+					"description": "About Evolution"
+				}
+			]
+		}
+	]
+}
